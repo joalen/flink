@@ -12,15 +12,15 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: 80af4d502318348ba15a8f75a2a622ce9dbdc968
-
-    - name: Install JDK 17
+  
+    - name: Set up JDK 17 for project
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Build project with JDK 17 
-      run: mvn clean install -DskipTests
+    - name: Build project with JDK 17
+      run: ./mvnw clean package -DskipTests
 
     - name: Setup CASR
       run: |
