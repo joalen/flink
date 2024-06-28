@@ -1,4 +1,4 @@
-name: CASR Runner
+name: Run CASR
 
 on:
   push:
@@ -31,6 +31,7 @@ jobs:
         echo "/tmp/casr" >> $GITHUB_PATH
 
     - name: Run CASR on the .java file(s)
+      shell: bash
       continue-on-error: true
       run: |      
         set +e
@@ -42,6 +43,6 @@ jobs:
 
         for jar_file in $jar_files; 
         do
-            command="casr-java --stdout -- java -jar $jar_file"
+            command="casr-java --stdout -- java -jar $jar_file 2>/dev/null"
             $command
         done
